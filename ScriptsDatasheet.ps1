@@ -13,13 +13,15 @@ $params = $nameExpr, $lengthExprt
 
 $resultado =
 	gci -Recurse -File |
+	
 		? Name -like "*_Datasheet_*" | 
 			select $params
-			
+		<# Escrevendo algo parecido com o que tu procura no lugar de Datasheets.
+
+		o script funcionará perfeitamente procurando aquilo que voce digitou #>
 if ($tipoDeExportacao -eq "HTML") {
-		$tituloPagina = "Datasheets na pasta"
 		$resultado | 
-		ConvertTo-Html -Title $tituloPagina |
+		ConvertTo-Html  |
 		Out-File C:\tempLucas\relatorio.html 
 } elseif ($tipoDeExportacao -eq "JSON") {
 	
